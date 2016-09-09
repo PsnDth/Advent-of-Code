@@ -1,0 +1,52 @@
+
+def houseCount(string):
+    position = [0,0]
+    position2 = [0,0]
+    coordinates = [(0,0)]
+    santa = True
+    for direction in string:
+        santa = not santa
+        if not santa:
+            if direction == "v":
+                position2[1] = position2[1] - 1
+                if tuple(position2) not in coordinates:
+                    coordinates.append(tuple(position2))
+            elif direction == ">":
+                position2[0] = position2[0] + 1
+                if tuple(position2) not in coordinates:
+                    coordinates.append(tuple(position2))
+            elif direction == "<":
+                position2[0] = position2[0] - 1
+                if tuple(position2) not in coordinates:
+                    coordinates.append(tuple(position2))
+            else:
+                position2[1] = position2[1] + 1
+                if tuple(position2) not in coordinates:
+                    coordinates.append(tuple(position2))
+        else:
+            if direction == "v":
+                position[1] = position[1] - 1
+                if tuple(position) not in coordinates:
+                    coordinates.append(tuple(position))
+            elif direction == ">":
+                position[0] = position[0] + 1
+                if tuple(position) not in coordinates:
+                    coordinates.append(tuple(position))
+            elif direction == "<":
+                position[0] = position[0] - 1
+                if tuple(position) not in coordinates:
+                    coordinates.append(tuple(position))
+            else:
+                position[1] = position[1] + 1
+                if tuple(position) not in coordinates:
+                    coordinates.append(tuple(position))
+            
+                
+    return len(coordinates)
+f = open("day3.txt", "r")
+directions = f.readlines()
+f.close()
+print len(directions)
+print houseCount(directions[0])
+print houseCount("^>v<")
+        
